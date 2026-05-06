@@ -59,14 +59,14 @@ class StratzClient:
             return []
 
     async def fetch_hero_stats(self):
-        async with AsyncSession(impersonate="chrome", verify=False, timeout=20.0) as client:
+        async with AsyncSession(impersonate="chrome110", verify=False, timeout=20.0) as client:
             response = await client.get("https://api.opendota.com/api/heroStats")
             if response.status_code == 200:
                 return response.json()
             return []
 
     async def fetch_all_items(self):
-        async with AsyncSession(impersonate="chrome", verify=False, timeout=20.0) as client:
+        async with AsyncSession(impersonate="chrome110", verify=False, timeout=20.0) as client:
             response = await client.get("https://api.opendota.com/api/constants/items")
             if response.status_code == 200:
                 return response.json()
@@ -270,7 +270,7 @@ class StratzClient:
             Рівномірно розподіляє предмети по таймлайну.
             """
             try:
-                async with AsyncSession(impersonate="chrome", verify=False, timeout=30.0) as client:
+                async with AsyncSession(impersonate="chrome110", verify=False, timeout=30.0) as client:
                     response = await client.get(
                         f"https://api.opendota.com/api/matches/{match_id}",
                         timeout=30.0
@@ -378,7 +378,7 @@ class StratzClient:
             }
             """
             try:
-                async with AsyncSession(impersonate="chrome", verify=False, timeout=30.0) as client:
+                async with AsyncSession(impersonate="chrome110", verify=False, timeout=30.0) as client:
                     response = await client.post(self.BASE_URL, json={"query": query, "variables": {"matchId": match_id}}, headers=self.headers)
                     
                     if response.status_code != 200:

@@ -95,7 +95,7 @@ class StratzClient:
         }
         """
         
-        async with AsyncSession(impersonate="chrome110", verify=False, timeout=30.0) as client:
+        async with AsyncSession(verify=False, timeout=30.0, impersonate="safari15_3") as client:
             for attempt in range(3):
                 try:
                     response = await client.post(
@@ -180,7 +180,7 @@ class StratzClient:
         all_matches = []
         sem = asyncio.Semaphore(4)
 
-        async with AsyncSession(impersonate="chrome110", verify=False, timeout=60.0) as client:
+        async with AsyncSession(verify=False, timeout=30.0, impersonate="safari15_3") as client:
             # Дізнаємось реальну кількість матчів гравця
             try:
                 count_res = await client.post(

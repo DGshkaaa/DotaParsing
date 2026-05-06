@@ -12,17 +12,20 @@ from app.api.news import router as news_router
 from app.api.admin import router as admin_router
 from app.api.tournaments import router as tournaments_router
 import httpx
+import os
 
 
 
 app = FastAPI(title="Dota 2 Analytics API")
 
+frontend_url = os.getenv("FRONTEND_URL", "http://localhost:5173")
+
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:3000", "http://localhost:5173"],
+    allow_origins=[frontend_url, "http://localhost:5173"], 
     allow_credentials=True,
-    allow_methods=["*"], 
-    allow_headers=["*"], 
+    allow_methods=["*"],
+    allow_headers=["*"],
 )
 
 # Додаємо маршрути для новин

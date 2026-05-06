@@ -28,19 +28,12 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-# Додаємо маршрути для новин
+
 app.include_router(news_router)
-
-# Додаємо маршрути для адміністрування
 app.include_router(admin_router)
-
-# Додаємо маршрути для турнірів
 app.include_router(tournaments_router)
 
-# ПРИМІТКА: Якщо у вас є дійсний Stratz токен, розкомментуйте рядок нижче та замініть його
-# STRATZ_TOKEN = "ВАШ_ДІЙСНИЙ_ТОКЕН_ТУТTRIM"
 
-# Якщо токен недійсний, використовуємо dummy значення (система використовуватиме OpenDota як fallback)
 STRATZ_TOKEN = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJTdWJqZWN0IjoiYmFhZjljZjAtOTMzYS00NzQyLWEzMmItYTc5MmQzMTI1OTU0IiwiU3RlYW1JZCI6IjExNTQ1NjAxMjYiLCJBUElVc2VyIjoidHJ1ZSIsIm5iZiI6MTc3NzgwNjAxNCwiZXhwIjoxODA5MzQyMDE0LCJpYXQiOjE3Nzc4MDYwMTQsImlzcyI6Imh0dHBzOi8vYXBpLnN0cmF0ei5jb20ifQ.PvVwr49phhpZLSWjDqiUcNRhlpkULxuwhxeH_X1sQGU"
 
 dota_client = StratzClient(api_key=STRATZ_TOKEN)
@@ -97,18 +90,13 @@ async def steam_callback(request: Request):
     
     if steam_id:
         await db.save_user(steam_id)
-        
-        # Завантажуємо дані користувача щоб дізнатись, чи адмін
         user_data = await db.get_user(steam_id)
         is_admin = user_data.get("is_admin", False) if user_data else False
         
-        # Передаємо в токен інформацію про адмін статус
         access_token = AuthService.create_access_token(
             data={"sub": steam_id, "is_admin": is_admin}
         )
-        
-        # Перенаправляємо на фронтенд на спеціальну сторінку обробки входу
-        return RedirectResponse(url=f"http://localhost:5173/login-success?token={access_token}")
+        return RedirectResponse(url=f"{frontend_url}/login-success?token={access_token}")
         
     raise HTTPException(status_code=400, detail="Steam Login Failed")
 

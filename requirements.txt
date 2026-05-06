@@ -12,3 +12,4 @@ aiohttp==3.9.1
 motor==3.3.2
 curl_cffi==0.5.9
 httpx==0.25.2
+PyJWT

@@ -29,3 +29,38 @@ body {
 [title]:hover {
   cursor: pointer;
 }
+
+/* Запобігання браузерному тулстрипу - встановити cursor default */
+.hero-row {
+  cursor: default !important;
+}
+
+.hero-row * {
+  cursor: inherit !important;
+}
+
+/* Блокування тулстрипів для всіх елементів у таблиці героїв */
+.heroes-table [title],
+.heroes-table [title=""],
+.hero-row [title] {
+  cursor: default !important;
+}
+
+/* Дозволити pointer для посилань */
+.hero-main-link {
+  cursor: pointer !important;
+}
+
+/* Спеціально для .stars елементів */
+.stars {
+  pointer-events: none;
+  user-select: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  cursor: default !important;
+}
+
+.stars[title=""] {
+  cursor: default !important;
+}

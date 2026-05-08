@@ -2497,6 +2497,42 @@ body::before {
   }
 }
 
+/* ============ БЛОКУВАННЯ ТУЛСТРИПІВ У ТАБЛИЦІ ГЕРОЇВ ============ */
+.heroes-table,
+.heroes-table tbody,
+.heroes-table tr,
+.heroes-table td {
+  pointer-events: auto !important;
+}
+
+.heroes-table *[title],
+.heroes-table *[title=""] {
+  cursor: inherit !important;
+  pointer-events: auto !important;
+  user-select: none;
+}
+
+/* Запобігання браузерному тулстрипу */
+.heroes-table *:hover[title],
+.heroes-table *:hover[title=""] {
+  cursor: inherit !important;
+}
+
+/* Блокування тулстрипу через CSS */
+.hero-row {
+  position: relative;
+}
+
+.hero-row:hover,
+.hero-row:hover * {
+  cursor: inherit !important;
+}
+
+/* Це блокує браузерний тулстрип на всіх дітях */
+.hero-row * {
+  cursor: default !important;
+}
+
 
 /* ============ ������ ��Ҳ TOOLTIPS ============ */
 [title] {

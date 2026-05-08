@@ -92,10 +92,6 @@ function Home() {
       const statsA = getStats(a);
       const statsB = getStats(b);
       comparison = parseFloat(statsA.trend) - parseFloat(statsB.trend);
-    } else if (sortField === 'complexity') {
-      const complexA = getComplexityStars(a.localized_name).length;
-      const complexB = getComplexityStars(b.localized_name).length;
-      comparison = complexA - complexB;
     } else if (sortField === 'matches') {
       const statsA = getStats(a);
       const statsB = getStats(b);
@@ -137,8 +133,8 @@ function Home() {
               <th onClick={() => handleSort('trend')} className={`sortable ${sortField === 'trend' ? 'active' : ''}`}>
                 TREND {sortField === 'trend' && (sortAsc ? '▲' : '▼')}
               </th>
-              <th onClick={() => handleSort('complexity')} className={`sortable ${sortField === 'complexity' ? 'active' : ''}`}>
-                COMPLEXITY {sortField === 'complexity' && (sortAsc ? '▲' : '▼')}
+              <th>
+                COMPLEXITY
               </th>
               <th>ROLES</th>
               <th onClick={() => handleSort('matches')} className={`sortable ${sortField === 'matches' ? 'active' : ''}`}>
@@ -149,56 +145,123 @@ function Home() {
           <tbody>
             {sortedHeroes.map(h => {
               const s = getStats(h);
+              
+              // Функція для видалення тулстрипів при наведенні
+              const removeTooltipsOnHover = (e) => {
+                e.currentTarget.querySelectorAll('[title]').forEach(el => {
+                  el.removeAttribute('title');
+                });
+              };
+
               return (
-                <tr key={h.id} className="hero-row">
+                <tr 
+                  key={h.id} 
+                  className="hero-row"
+                  onMouseEnter={removeTooltipsOnHover}
+                  onMouseOver={removeTooltipsOnHover}
+                  onMouseMove={removeTooltipsOnHover}
+                >
                   {/* Герой: Фото + Назва + Атрибут */}
                   <td>
                     <div className="hero-info-cell">
                       <div className="avatar-wrapper">
-                        <img src={`${STEAM_CDN}${h.img}`} className="hero-avatar" alt={h.localized_name} />
+                        <img src={`${STEAM_CDN}${h.img}`} className="hero-avatar" alt={h.localized_name} title="" />
                       </div>
                       <div className="name-box">
-                        <Link to={`/hero/${h.id}`} className={`hero-main-link ${attrClass(h.primary_attr)}`}>
+                        <Link to={`/hero/${h.id}`} className={`hero-main-link ${attrClass(h.primary_attr)}`} title="">
                           {h.localized_name}
                         </Link>
-                        <span className="hero-subtext">{h.attack_type}</span>
+                        <span className="hero-subtext" title="">{h.attack_type}</span>
                       </div>
                     </div>
                   </td>
 
                   {/* Загальний вінрейт */}
-                  <td className="stat-value">{s.avgWr}%</td>
+                  <td 
+                    className="stat-value" 
+                    title=""
+                    onMouseEnter={removeTooltipsOnHover}
+                    onMouseOver={removeTooltipsOnHover}
+                  >{s.avgWr}%</td>
 
                   {/* Елітний вінрейт */}
-                  <td>
-                    <span className={`wr-value ${s.highWr > 52 ? 'high-wr' : s.highWr < 48 ? 'low-wr' : ''}`}>
+                  <td 
+                    title=""
+                    onMouseEnter={removeTooltipsOnHover}
+                    onMouseOver={removeTooltipsOnHover}
+                  >
+                    <span 
+                      className={`wr-value ${s.highWr > 52 ? 'high-wr' : s.highWr < 48 ? 'low-wr' : ''}`} 
+                      title=""
+                      onMouseEnter={removeTooltipsOnHover}
+                      onMouseOver={removeTooltipsOnHover}
+                    >
                       {s.highWr}%
                     </span>
                   </td>
 
                   {/* Тренд */}
-                  <td>
-                    <div className={`trend-box ${s.trend > 0 ? 'trend-up' : 'trend-down'}`}>
+                  <td 
+                    title=""
+                    onMouseEnter={removeTooltipsOnHover}
+                    onMouseOver={removeTooltipsOnHover}
+                  >
+                    <div 
+                      className={`trend-box ${s.trend > 0 ? 'trend-up' : 'trend-down'}`} 
+                      title=""
+                      onMouseEnter={removeTooltipsOnHover}
+                      onMouseOver={removeTooltipsOnHover}
+                    >
                       {s.trend > 0 ? `▲ +${s.trend}` : `▼ ${s.trend}`}%
                     </div>
                   </td>
 
                   {/* Складність */}
-                  <td className="complexity-cell">
-                    <span className="stars">{getComplexityStars(h.localized_name)}</span>
+                  <td 
+                    className="complexity-cell" 
+                    title=""
+                    onMouseEnter={removeTooltipsOnHover}
+                    onMouseOver={removeTooltipsOnHover}
+                  >
+                    <span 
+                      className="stars" 
+                      title=""
+                      onMouseEnter={removeTooltipsOnHover}
+                      onMouseOver={removeTooltipsOnHover}
+                    >{getComplexityStars(h.localized_name)}</span>
                   </td>
 
                   {/* Ролі */}
-                  <td>
-                    <div style={{display: 'flex', flexWrap: 'wrap', gap: '4px'}}>
+                  <td 
+                    title=""
+                    onMouseEnter={removeTooltipsOnHover}
+                    onMouseOver={removeTooltipsOnHover}
+                  >
+                    <div 
+                      style={{display: 'flex', flexWrap: 'wrap', gap: '4px'}} 
+                      title=""
+                      onMouseEnter={removeTooltipsOnHover}
+                      onMouseOver={removeTooltipsOnHover}
+                    >
                       {h.roles.slice(0, 2).map(role => (
-                        <span key={role} className="role-badge">{role}</span>
+                        <span 
+                          key={role} 
+                          className="role-badge" 
+                          title=""
+                          onMouseEnter={removeTooltipsOnHover}
+                          onMouseOver={removeTooltipsOnHover}
+                        >{role}</span>
                       ))}
                     </div>
                   </td>
 
                   {/* Кількість матчів */}
-                  <td className="stat-value picks-count">
+                  <td 
+                    className="stat-value picks-count" 
+                    title=""
+                    onMouseEnter={removeTooltipsOnHover}
+                    onMouseOver={removeTooltipsOnHover}
+                  >
                     {s.allPicks.toLocaleString()}
                   </td>
                 </tr>

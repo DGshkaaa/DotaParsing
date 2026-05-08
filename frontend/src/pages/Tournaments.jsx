@@ -338,7 +338,6 @@ function Tournaments() {
               <button 
                 className="modal-close-btn" 
                 onClick={closeTournamentModal}
-                title="Закрити (Esc)"
               >
                 ✕
               </button>

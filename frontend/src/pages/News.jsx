@@ -125,7 +125,6 @@ function News() {
               <button 
                 className="modal-close-btn" 
                 onClick={closeModal}
-                title="Закрити (Esc)"
               >
                 ✕
               </button>

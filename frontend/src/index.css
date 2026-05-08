@@ -11,3 +11,21 @@ body {
   overflow-y: scroll;
   background-color: #0a0a0a;
 }
+
+
+/* ============ ÓÁĞÀÒÈ ÁĞÀÓÇÅĞÍ² TOOLTIPS ============ */
+[title] {
+  cursor: pointer !important;
+}
+
+/* Âèìèêàºìî native tooltip */
+[title]::before,
+[title]::after {
+  display: none !important;
+  visibility: hidden !important;
+}
+
+/* CSS to prevent default browser tooltip */
+[title]:hover {
+  cursor: pointer;
+}

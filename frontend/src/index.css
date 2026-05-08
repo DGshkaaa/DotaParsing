@@ -13,12 +13,12 @@ body {
 }
 
 
-/* ============ ÓÁĞÀÒÈ ÁĞÀÓÇÅĞÍ² TOOLTIPS ============ */
+
 [title] {
   cursor: pointer !important;
 }
 
-/* Âèìèêàºìî native tooltip */
+/* ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ native tooltip */
 [title]::before,
 [title]::after {
   display: none !important;

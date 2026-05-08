@@ -1,0 +1,31 @@
+* {
+  box-sizing: border-box;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  overflow-y: scroll;
+  background-color: #0a0a0a;
+}
+
+
+/* ============ УБРАТИ БРАУЗЕРНІ TOOLTIPS ============ */
+[title] {
+  cursor: pointer !important;
+}
+
+/* Вимикаємо native tooltip */
+[title]::before,
+[title]::after {
+  display: none !important;
+  visibility: hidden !important;
+}
+
+/* CSS to prevent default browser tooltip */
+[title]:hover {
+  cursor: pointer;
+}

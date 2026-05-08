@@ -1,9 +1,9 @@
-import { StrictMode } from 'react'
+ï»¿import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import './index.css'
 import App from './App.jsx'
 
-// Óáðàòè áðàóçåðí³ tooltips ç íàâ³ãàö³¿
+// Remove browser tooltips from navbar
 const removeNavbarTooltips = () => {
   setTimeout(() => {
     document.querySelectorAll('.navbar [title]').forEach(el => el.removeAttribute('title'));
